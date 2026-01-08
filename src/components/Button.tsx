@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 export type ButtonProps = PropsWithChildren<{
 	onClick?: () => void;
-	variant?: "primary" | "secondary";
+	variant: keyof typeof variances;
 }>;
 
 export const Button = ({
@@ -14,10 +14,7 @@ export const Button = ({
 	return (
 		<TouchableOpacity
 			onPress={onClick}
-			style={[
-				styles.button,
-				variant === "primary" ? styles.primary : styles.secondary,
-			]}
+			style={[styles.button, variances[variant].pane]}
 		>
 			<Text style={styles.text}>{children}</Text>
 		</TouchableOpacity>
@@ -32,15 +29,22 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 	},
-	primary: {
-		backgroundColor: "#007AFF",
-	},
-	secondary: {
-		backgroundColor: "#5856D6",
-	},
 	text: {
 		color: "#FFFFFF",
 		fontSize: 16,
 		fontWeight: "bold",
 	},
 });
+
+const variances = {
+	primary: StyleSheet.create({
+		pane: {
+			backgroundColor: "#007AFF",
+		},
+	}),
+	secondary: StyleSheet.create({
+		pane: {
+			backgroundColor: "#5856D6",
+		},
+	}),
+} as const;
