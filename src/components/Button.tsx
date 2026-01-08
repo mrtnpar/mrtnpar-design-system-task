@@ -1,32 +1,46 @@
-import type React from "react";
+import type { PropsWithChildren } from "react";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-export interface ButtonProps {
-	children: React.ReactNode;
+export type ButtonProps = PropsWithChildren<{
 	onClick?: () => void;
 	variant?: "primary" | "secondary";
-}
+}>;
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button = ({
 	children,
 	onClick,
 	variant = "primary",
-}) => {
+}: ButtonProps) => {
 	return (
-		<button
-			onClick={onClick}
-			type="button"
-			style={{
-				padding: "12px 24px",
-				borderRadius: "8px",
-				border: "none",
-				cursor: "pointer",
-				backgroundColor: variant === "primary" ? "#007AFF" : "#5856D6",
-				color: "white",
-				fontSize: "16px",
-				fontWeight: "bold",
-			}}
+		<TouchableOpacity
+			onPress={onClick}
+			style={[
+				styles.button,
+				variant === "primary" ? styles.primary : styles.secondary,
+			]}
 		>
-			{children}
-		</button>
+			<Text style={styles.text}>{children}</Text>
+		</TouchableOpacity>
 	);
 };
+
+const styles = StyleSheet.create({
+	button: {
+		paddingVertical: 12,
+		paddingHorizontal: 24,
+		borderRadius: 8,
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	primary: {
+		backgroundColor: "#007AFF",
+	},
+	secondary: {
+		backgroundColor: "#5856D6",
+	},
+	text: {
+		color: "#FFFFFF",
+		fontSize: 16,
+		fontWeight: "bold",
+	},
+});

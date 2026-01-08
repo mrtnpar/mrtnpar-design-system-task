@@ -1,17 +1,12 @@
-import type React from "react";
+import type { PropsWithChildren } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export interface BoxProps {
-	children?: React.ReactNode;
+export type BoxProps = PropsWithChildren<{
 	title?: string;
 	variant?: "primary" | "secondary";
-}
+}>;
 
-export const Box: React.FC<BoxProps> = ({
-	children,
-	title,
-	variant = "primary",
-}) => {
+export const Box = ({ children, title, variant = "primary" }: BoxProps) => {
 	return (
 		<View style={[styles.box, variant === "secondary" && styles.boxSecondary]}>
 			{title && <Text style={styles.title}>{title}</Text>}
