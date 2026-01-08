@@ -1,35 +1,26 @@
-const config = {
-  stories: [
-    "../src/**/*.stories.@(js|jsx|ts|tsx)",
-    "../tests/**/*.stories.@(js|jsx|ts|tsx)",
-  ],
+import type { StorybookConfig } from "@storybook/react-vite";
+import reactNativeWeb from "vite-plugin-react-native-web";
 
-  addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-themes",
-    "@storybook/addon-docs",
-  ],
+const config: StorybookConfig = {
+	stories: [
+		"../src/**/*.stories.@(js|jsx|ts|tsx)",
+		"../tests/**/*.stories.@(js|jsx|ts|tsx)",
+	],
 
-  framework: {
-    name: "@storybook/react-vite",
-    options: {
-      viteFinal: async (config) => {
-        config.resolve = {
-          ...config.resolve,
-          alias: {
-            ...config.resolve?.alias,
-            "react-native": "react-native-web",
-          },
-        };
+	addons: [
+		"@storybook/addon-links",
+		"@storybook/addon-themes",
+		"@storybook/addon-docs",
+	],
 
-        config.optimizeDeps = {
-          ...config.optimizeDeps,
-          exclude: ["react-native"],
-        };
+	framework: {
+		name: "@storybook/react-vite",
+		options: {},
+	},
 
-        return config;
-      },
-    },
-  },
+	async viteFinal(config) {
+		config.plugins = [...(config.plugins || []), reactNativeWeb()];
+		return config;
+	},
 };
 export default config;
