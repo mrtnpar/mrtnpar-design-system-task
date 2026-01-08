@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../hooks/useTheme";
+import type { Theme } from "../tokens/themes";
 
 export type BoxProps = PropsWithChildren<{
   title?: string;
@@ -60,11 +61,11 @@ const styles = StyleSheet.create({
 
 const variances = {
   primary: {
-    backgroundColor: (theme: any) => theme.colors.primary,
-    textColor: (theme: any) => theme.colors.neutral["50"],
+    backgroundColor: (theme: Theme) => theme.colors.primary,
+    textColor: (theme: Theme) => theme.colors.neutral["50"],
   },
   secondary: {
-    backgroundColor: (theme: any) => theme.colors.secondary,
-    textColor: (theme: any) => theme.colors.neutral["50"],
+    backgroundColor: (theme: Theme) => theme.colors.secondary,
+    textColor: (theme: Theme) => theme.colors.neutral["50"],
   },
 } as const;

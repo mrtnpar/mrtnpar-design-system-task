@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { useTheme } from "../hooks/useTheme";
+import type { Theme } from "../tokens/themes";
 
 export type ButtonProps = PropsWithChildren<{
   onClick?: () => void;
@@ -51,13 +52,13 @@ const styles = StyleSheet.create({
 
 const variances = {
   primary: {
-    backgroundColor: (theme: any) => theme.colors.primary,
-    borderColor: (theme: any) => theme.colors.primary,
-    textColor: (theme: any) => theme.colors.neutral["50"],
+    backgroundColor: (theme: Theme) => theme.colors.primary,
+    borderColor: (theme: Theme) => theme.colors.primary,
+    textColor: (theme: Theme) => theme.colors.neutral["50"],
   },
   secondary: {
-    backgroundColor: (theme: any) => theme.colors.secondary,
-    borderColor: (theme: any) => theme.colors.secondary,
-    textColor: (theme: any) => theme.colors.neutral["50"],
+    backgroundColor: (theme: Theme) => theme.colors.secondary,
+    borderColor: (theme: Theme) => theme.colors.secondary,
+    textColor: (theme: Theme) => theme.colors.neutral["50"],
   },
 } as const;
