@@ -14,6 +14,52 @@ Cross-platform design system library for React (web) and React Native (mobile). 
 - **Changesets** - Versioning and publishing automation
 - **Storybook** - Documentation and playground
 
+## OpenSpec
+
+This project uses **OpenSpec**, a spec-driven development framework that ensures all changes are planned, approved, and implemented according to clear specifications.
+
+### How OpenSpec Works
+
+OpenSpec follows a bottom-up, three-stage workflow:
+
+1. **Stage 1 - Propose Changes**: Create change proposals with clear requirements, tasks, and impact analysis
+2. **Stage 2 - Implement**: Build features according to approved proposals
+3. **Stage 3 - Archive**: Mark changes complete and update specifications
+
+### Key Concepts
+
+- **Specs (`openspec/specs/`)** - The current truth: what IS built and deployed
+- **Changes (`openspec/changes/`)** - Proposals: what SHOULD change
+- **Proposals** - Must be approved before implementation begins
+- **Requirements** - Written as scenarios with `WHEN/THEN` format for clarity
+
+### When to Use OpenSpec
+
+Create a proposal for:
+
+- Adding new features or capabilities
+- Making breaking changes to APIs or components
+- Architectural changes or pattern shifts
+- Performance or security improvements
+
+Skip proposals for:
+
+- Bug fixes that restore spec-defined behavior
+- Typos, formatting, or comment changes
+- Non-breaking dependency updates
+- Tests for existing behavior
+
+### Quick Commands
+
+```bash
+openspec list              # View active change proposals
+openspec show [item]       # View proposal or spec details
+openspec validate [item]   # Validate a change proposal
+openspec archive [id]      # Mark a change as complete
+```
+
+See `openspec/AGENTS.md` for complete documentation on the OpenSpec workflow and conventions.
+
 ## Getting Started
 
 ### Installation
