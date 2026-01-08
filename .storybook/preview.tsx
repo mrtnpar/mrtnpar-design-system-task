@@ -3,27 +3,21 @@ import { ThemeProvider } from "../src/components/ThemeProvider";
 
 /** @type { import('@storybook/react').Decorator } */
 const withThemeProvider = (Story, context) => {
-	return (
-		<ThemeProvider initialTheme="system">
-			<Story />
-		</ThemeProvider>
-	);
+  return (
+    <ThemeProvider initialTheme="system">
+      <Story />
+    </ThemeProvider>
+  );
 };
 
 const preview: Preview = {
-	parameters: {
-		actions: { argTypesRegex: "^on[A-Z].*" },
-		controls: {
-			matchers: {
-				color: /(background|color)$/i,
-				date: /Date$/,
-			},
-		},
-		docs: {
-			theme: "light",
-		},
-	},
-	decorators: [withThemeProvider],
+  parameters: {
+    actions: { argTypesRegex: "^on[A-Z].*" },
+    docs: {
+      theme: "light",
+    },
+  },
+  decorators: [withThemeProvider],
 };
 
 export default preview;
