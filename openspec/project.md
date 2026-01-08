@@ -38,7 +38,7 @@ Cross-platform design system library for React (web) and React Native (mobile). 
 ### Git Workflow
 - Feature branches from main
 - Commit messages follow Conventional Commits format
-- Changesets for versioning (add changeset with `pnpm changeset` when changing components)
+- Changesets for versioning (add changeset with `yarn changeset` when changing components)
 - PR required for all changes
 - Automated publishing to NPM via changesets
 
