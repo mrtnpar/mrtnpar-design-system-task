@@ -10,6 +10,26 @@ const config = {
     "@storybook/addon-docs",
   ],
 
-  framework: "@storybook/react-vite",
+  framework: {
+    name: "@storybook/react-vite",
+    options: {
+      viteFinal: async (config) => {
+        config.resolve = {
+          ...config.resolve,
+          alias: {
+            ...config.resolve?.alias,
+            "react-native": "react-native-web",
+          },
+        };
+
+        config.optimizeDeps = {
+          ...config.optimizeDeps,
+          exclude: ["react-native"],
+        };
+
+        return config;
+      },
+    },
+  },
 };
 export default config;
