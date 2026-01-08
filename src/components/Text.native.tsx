@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import { Platform, StyleSheet, Text as RNText, TextProps } from "react-native";
+import { useTheme } from "../hooks/useTheme";
 import { type TextVariant } from "./Text.types";
 
 export interface CustomTextProps extends TextProps {
@@ -9,13 +10,15 @@ export interface CustomTextProps extends TextProps {
 
 const Text = forwardRef<RNText, CustomTextProps>(
   ({ children, variant = "body", style, color, ...props }, ref) => {
+    const { theme } = useTheme();
+
     return (
       <RNText
         ref={ref}
         style={[
           styles.base,
           styles[variant as keyof typeof styles],
-          color && { color },
+          { color: color || theme.colors.neutral[900] },
           style,
         ]}
         {...props}

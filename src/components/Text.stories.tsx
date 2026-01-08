@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Text } from "./Text.web";
+import { Button } from "./Button";
+import { ThemeProvider, useTheme } from "./ThemeProvider";
 
 const meta: Meta<typeof Text> = {
   title: "Components/Text",
@@ -112,4 +114,70 @@ export const AllVariants: Story = {
       <Text variant="label">Label text</Text>
     </div>
   ),
+};
+
+export const WithThemeSwitching: Story = {
+  render: () => {
+    const { mode, setTheme } = useTheme();
+
+    return (
+      <div
+        style={{
+          padding: 24,
+        }}
+      >
+        <div
+          style={{
+            marginBottom: 24,
+            paddingBottom: 16,
+            borderBottom: "1px solid #ccc",
+          }}
+        >
+          <p style={{ marginBottom: 12, fontSize: "14px", color: "#666" }}>
+            Theme Mode: <strong>{mode.toUpperCase()}</strong>
+          </p>
+          <div style={{ marginBottom: 16, display: "flex", gap: 12 }}>
+            <Button
+              variant={mode === "light" ? "primary" : "secondary"}
+              onClick={() => setTheme("light")}
+            >
+              Light
+            </Button>
+            <Button
+              variant={mode === "dark" ? "primary" : "secondary"}
+              onClick={() => setTheme("dark")}
+            >
+              Dark
+            </Button>
+            <Button
+              variant={mode === "system" ? "primary" : "secondary"}
+              onClick={() => setTheme("system")}
+            >
+              System
+            </Button>
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "16px",
+          }}
+        >
+          <Text variant="h1">Heading 1</Text>
+          <Text variant="h2">Heading 2</Text>
+          <Text variant="h3">Heading 3</Text>
+          <Text variant="body">Body text with theme support</Text>
+          <Text variant="body-small">Small body text with theme support</Text>
+        </div>
+      </div>
+    );
+  },
+  decorators: [
+    (Story) => (
+      <ThemeProvider initialTheme="system">
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
 };
